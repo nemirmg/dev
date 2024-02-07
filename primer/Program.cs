@@ -16,10 +16,19 @@
 // Процедура принимает аргументы
 
 // передача по значению
-void f(int n){
+// void f(int n){
+//     n = n + 5;
+// }
+
+// int n = 10;
+// f(n);
+// Console.WriteLine(n);
+
+// передача по ссылке
+void f(ref int n){
     n = n + 5;
 }
 
 int n = 10;
-f(n);
+f(ref n);
 Console.WriteLine(n);
