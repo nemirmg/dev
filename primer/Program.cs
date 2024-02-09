@@ -74,20 +74,51 @@
 [4 3 4 1 9 5 21 13] => 3
 */
 
+// void inputArray(int[] array){
+//     for (int i = 0; i < array.Length; i++)
+//         array[i] = new Random().Next(1, 1001);
+// }
+
+// // простые числа - те, которые НЕ имеют делителей
+// // в дипазоне [2; n // 2]
+
+// bool isPrime(int x){
+//     for (int i = 2; i <= x / 2; i++){
+//         if (x % i == 0)
+//             return false;
+//     }
+//     return true;
+// }
+
+// Console.Clear();
+// Console.Write("Введите количество чисел: ");
+// int n = int.Parse(Console.ReadLine()!);
+// int[] array = new int[n];
+// inputArray(array);
+// Console.WriteLine($"Начальный массив: [{string.Join(", ", array)}]");
+// Console.Write("Простые числа: ");
+// int count = 0;
+// foreach (int elem in array){  // таким образом нельзя изменить элементы массива!
+//     if (isPrime(elem))
+//         count++;
+// }
+// Console.WriteLine(count);
+
+//---------------
+/*
+Задание 2
+Задайте массив из N случайных чисел (N вводится с клавиатуры).
+Найдите количество чисел, которые оканчиваются на 1 и
+делятся нацело на 7.
+
+Пример:
+[1 5 11 21 81 4 0 91 2 3] => 2
+*/
+
 void inputArray(int[] array){
-    for (int i = 0; i < array.Length; i++)
+    for (int i = 0; i < array.Length; i++){
         array[i] = new Random().Next(1, 1001);
-}
-
-// простые числа - те, которые НЕ имеют делителей
-// в дипазоне [2; n // 2]
-
-bool isPrime(int x){
-    for (int i = 2; i <= x / 2; i++){
-        if (x % i == 0)
-            return false;
     }
-    return true;
 }
 
 Console.Clear();
@@ -96,10 +127,9 @@ int n = int.Parse(Console.ReadLine()!);
 int[] array = new int[n];
 inputArray(array);
 Console.WriteLine($"Начальный массив: [{string.Join(", ", array)}]");
-Console.Write("Простые числа: ");
 int count = 0;
-foreach (int elem in array){  // таким образом нельзя изменить элементы массива!
-    if (isPrime(elem))
+foreach (int element in array){
+    if (element % 10 == 1 && element % 7 == 0)
         count++;
 }
 Console.WriteLine(count);
