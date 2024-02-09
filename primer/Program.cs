@@ -214,40 +214,62 @@
 
 // Console.WriteLine(resultNumber);
 
-/*
-Задача 1: 
-Напишите программу, которая бесконечно запрашивает 
-целые числа с консоли. Программа завершается при вводе символа 
-‘q’ или при вводе числа, сумма цифр которого чётная.
-*/
+// /*
+// Задача 1: 
+// Напишите программу, которая бесконечно запрашивает 
+// целые числа с консоли. Программа завершается при вводе символа 
+// ‘q’ или при вводе числа, сумма цифр которого чётная.
+// */
 
-int sumNumber (int num){
-    int summa = 0;
-    if (num < 0)
-        num *= -1;
-    while (num != 0){
-        summa += num % 10;
-        num /= 10;
-    }
-    return summa;
-}
+// int sumNumber (int num){
+//     int summa = 0;
+//     if (num < 0)
+//         num *= -1;
+//     while (num != 0){
+//         summa += num % 10;
+//         num /= 10;
+//     }
+//     return summa;
+// }
 
-bool continueInput(string line){
-    if (line == "q")
-        return false;
-    else if (sumNumber(int.Parse(line)!) % 2 == 0)
-        return false;
-    return true;
-}
+// bool continueInput(string line){
+//     if (line == "q")
+//         return false;
+//     else if (sumNumber(int.Parse(line)!) % 2 == 0)
+//         return false;
+//     return true;
+// }
 
-Console.Clear();
-Console.Write("Введите целое число\n" + 
-"(для выхода введите 'q' или число, сумма цифр которого - чётная):");
-string input_line = Console.ReadLine()!;
+// Console.Clear();
+// Console.Write("Введите целое число\n" + 
+// "(для выхода введите 'q' или число, сумма цифр которого - чётная):");
+// string input_line = Console.ReadLine()!;
 
-while (continueInput(input_line)){
-    Console.Write("Введите целое число: ");
-    input_line = Console.ReadLine()!;
-}
+// while (continueInput(input_line)){
+//     Console.Write("Введите целое число: ");
+//     input_line = Console.ReadLine()!;
+// }
 // Console.WriteLine(input_line);
 // Console.WriteLine(continueInput(input_line));
+
+/*
+Задача 2
+Задайте массив заполненный случайными трёхзначными числами. 
+Напишите программу, которая покажет количество чётных чисел 
+в массиве.
+*/
+
+void inputArray(int[] array){
+    for (int i = 0; i < array.Length; i++){
+        array[i] = new Random().Next(100, 1000);
+    }
+}
+
+
+
+Console.Clear();
+Console.Write("Введите количество элементов массива: ");
+int n = int.Parse(Console.ReadLine()!);
+int[] array = new int[n];
+inputArray(array);
+Console.WriteLine($"Начальный массив: [{string.Join(", ", array)}]");
