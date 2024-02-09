@@ -115,21 +115,101 @@
 [1 5 11 21 81 4 0 91 2 3] => 2
 */
 
+// void inputArray(int[] array){
+//     for (int i = 0; i < array.Length; i++){
+//         array[i] = new Random().Next(1, 1001);
+//     }
+// }
+
+// Console.Clear();
+// Console.Write("Введите количество чисел: ");
+// int n = int.Parse(Console.ReadLine()!);
+// int[] array = new int[n];
+// inputArray(array);
+// Console.WriteLine($"Начальный массив: [{string.Join(", ", array)}]");
+// int count = 0;
+// foreach (int element in array){
+//     if (element % 10 == 1 && element % 7 == 0)
+//         count++;
+// }
+// Console.WriteLine(count);
+
+//---------------
+/*
+Задание 3
+Заполните массив на N (вводится с консоли, не более 8)
+случайных целых чисел от 0 до 9.
+Сформируйте целое число, которое будет состоять из цифр из
+массива. Старший разряд числа находится на 0-м индексе,
+младший – на последнем.
+
+Пример
+[1 3 2 4 2 3] => 132423
+[2 3 1] => 231
+*/
+
+// моё решение
+// void inputArray(int[] array){
+//     for (int i = 0; i < array.Length; i++)
+//         array[i] = new Random().Next(1, 10);
+// }
+
+// int createNumber(int[] array){
+//     int num = 0;
+//     for (int i = 0; i < array.Length; i++){
+//         if (i == array.Length - i)
+//             num += array[i];
+//         else {
+//             int x = array[i];
+//             for (int j = 1; j < array.Length - i; j++)
+//                 x *= 10;
+//             num += x;
+//         }
+//     }
+//     return num;
+// }
+
+// Console.Clear();
+// Console.Write("Введите количество чисел: ");
+// int n = int.Parse(Console.ReadLine()!);
+// while (n > 8)
+// {
+//     Console.WriteLine("Чисел должно быть не более 8!");
+//     Console.Write("Введите количество чисел: ");
+//     n = int.Parse(Console.ReadLine()!);
+// }
+
+// int[] array = new int[n];
+// inputArray(array);
+// Console.WriteLine($"Начальный массив: [{string.Join(", ", array)}]");
+
+// int result = createNumber(array);
+// Console.WriteLine(result);
+
+// решение на семинаре
 void inputArray(int[] array){
-    for (int i = 0; i < array.Length; i++){
-        array[i] = new Random().Next(1, 1001);
-    }
+    for (int i = 0; i < array.Length; i++)
+        array[i] = new Random().Next(1, 10);
 }
 
 Console.Clear();
 Console.Write("Введите количество чисел: ");
 int n = int.Parse(Console.ReadLine()!);
+while (n > 8)
+{
+    Console.WriteLine("Чисел должно быть не более 8!");
+    Console.Write("Введите количество чисел: ");
+    n = int.Parse(Console.ReadLine()!);
+}
+
 int[] array = new int[n];
 inputArray(array);
 Console.WriteLine($"Начальный массив: [{string.Join(", ", array)}]");
-int count = 0;
-foreach (int element in array){
-    if (element % 10 == 1 && element % 7 == 0)
-        count++;
+
+int resultNumber = 0, count = array.Length - 1;
+for (int i = 0; i < array.Length; i++){
+    resultNumber += array[i] * Convert.ToInt32(Math.Pow(10, count));
+    count--;
 }
-Console.WriteLine(count);
+
+Console.WriteLine(resultNumber);
