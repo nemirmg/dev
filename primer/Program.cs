@@ -187,29 +187,67 @@
 // Console.WriteLine(result);
 
 // решение на семинаре
-void inputArray(int[] array){
-    for (int i = 0; i < array.Length; i++)
-        array[i] = new Random().Next(1, 10);
+// void inputArray(int[] array){
+//     for (int i = 0; i < array.Length; i++)
+//         array[i] = new Random().Next(1, 10);
+// }
+
+// Console.Clear();
+// Console.Write("Введите количество чисел: ");
+// int n = int.Parse(Console.ReadLine()!);
+// while (n > 8)
+// {
+//     Console.WriteLine("Чисел должно быть не более 8!");
+//     Console.Write("Введите количество чисел: ");
+//     n = int.Parse(Console.ReadLine()!);
+// }
+
+// int[] array = new int[n];
+// inputArray(array);
+// Console.WriteLine($"Начальный массив: [{string.Join(", ", array)}]");
+
+// int resultNumber = 0, count = array.Length - 1;
+// for (int i = 0; i < array.Length; i++){
+//     resultNumber += array[i] * Convert.ToInt32(Math.Pow(10, count));
+//     count--;
+// }
+
+// Console.WriteLine(resultNumber);
+
+/*
+Задача 1: 
+Напишите программу, которая бесконечно запрашивает 
+целые числа с консоли. Программа завершается при вводе символа 
+‘q’ или при вводе числа, сумма цифр которого чётная.
+*/
+
+int sumNumber (int num){
+    int summa = 0;
+    if (num < 0)
+        num *= -1;
+    while (num != 0){
+        summa += num % 10;
+        num /= 10;
+    }
+    return summa;
+}
+
+bool continueInput(string line){
+    if (line == "q")
+        return false;
+    else if (sumNumber(int.Parse(line)!) % 2 == 0)
+        return false;
+    return true;
 }
 
 Console.Clear();
-Console.Write("Введите количество чисел: ");
-int n = int.Parse(Console.ReadLine()!);
-while (n > 8)
-{
-    Console.WriteLine("Чисел должно быть не более 8!");
-    Console.Write("Введите количество чисел: ");
-    n = int.Parse(Console.ReadLine()!);
+Console.Write("Введите целое число\n" + 
+"(для выхода введите 'q' или число, сумма цифр которого - чётная):");
+string input_line = Console.ReadLine()!;
+
+while (continueInput(input_line)){
+    Console.Write("Введите целое число: ");
+    input_line = Console.ReadLine()!;
 }
-
-int[] array = new int[n];
-inputArray(array);
-Console.WriteLine($"Начальный массив: [{string.Join(", ", array)}]");
-
-int resultNumber = 0, count = array.Length - 1;
-for (int i = 0; i < array.Length; i++){
-    resultNumber += array[i] * Convert.ToInt32(Math.Pow(10, count));
-    count--;
-}
-
-Console.WriteLine(resultNumber);
+// Console.WriteLine(input_line);
+// Console.WriteLine(continueInput(input_line));
