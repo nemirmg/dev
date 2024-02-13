@@ -1,67 +1,21 @@
-﻿// Пузырьковая сортировка
+﻿// Быстрая сортировка O(log2(n) * n)
 
-using System.Diagnostics;
+// Напишите программу, которая сложит 2 числа a и b без прямого сложения.
+// Рекурсия
 
-bool Check(int[] array){
-    int size = array.Length;
-    for (int i = 0; i < size - 1; i++){
-        if (array[i] > array[i + 1])
-            return false;
-    }
-    return true;
+int sumNumbers(int n, int m){
+    if (m == 0)
+        return n;
+    return sumNumbers(n + 1, m - 1);
 }
+/*
+f = sumNumbers
 
-
-int n = 100000;
-int max = 100;
-int[] array = new int[n];
-bool show = !true;
-
-for (int i = 0; i < array.Length; i++){
-    array[i] = Random.Shared.Next(max);
-}
-if (show)
-    Console.WriteLine($"[{String.Join(", ", array)}]");
-
-int[] arr1 = new int[n];
-Array.Copy(array, arr1, n);
-int[] arr2 = new int[n];
-Array.Copy(array, arr2, n);
-
-if (show)
-    Console.WriteLine($"arr1: [{String.Join(", ", arr1)}]");
-
-Stopwatch sw = new Stopwatch();
-sw.Start();
-for (int k = 0; k < arr1.Length - 1; k++){
-    for (int i = 0; i < arr1.Length - 1 - k; i++){
-        if (arr1[i] > arr1[i + 1]){
-            int temp = arr1[i];
-            arr1[i] = arr1[i + 1];
-            arr1[i + 1] = temp;
-        }
-    }
-}
-sw.Stop();
-Console.WriteLine($"arr1 - {Check(arr1)} {sw.ElapsedMilliseconds}ms");
-if (show)
-    Console.WriteLine($"arr1: [{String.Join(", ", arr1)}]");
-if (show)
-    Console.WriteLine($"arr2: [{String.Join(", ", arr2)}]");
-// Console.ReadLine();
-
-sw.Reset();
-sw.Start();
-for (int k = 0; k < arr2.Length - 1; k++){
-    for (int i = 0; i < arr2.Length - 1; i++){
-        if (arr2[i] > arr2[i + 1]){
-            int temp = arr2[i];
-            arr2[i] = arr2[i + 1];
-            arr2[i + 1] = temp;
-        }
-    }
-}
-sw.Stop();
-Console.WriteLine($"arr2 - {Check(arr2)} {sw.ElapsedMilliseconds}ms");
-if (show)
-    Console.WriteLine($"arr2: [{String.Join(", ", arr2)}]");
+f(5, 3) -> f(6, 2) -> f(7, 1) -> f(8, 0) -> 8
+*/
+Console.Clear();
+Console.Write("Введите 1-ое число: ");
+int a = int.Parse(Console.ReadLine()!);
+Console.Write("Введите 2-ое число: ");
+int b = int.Parse(Console.ReadLine()!);
+Console.WriteLine($"{a} + {b} = {sumNumbers(a, b)}");
