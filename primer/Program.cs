@@ -71,21 +71,31 @@ char[] characters = str.ToCharArray(); -> в данном случае не ис
 "world" => 1
 */
 
-bool checkVowel(char ch, char[] vowels){
-    foreach (char element in vowels){
-        if (ch == element)
-         return true;
-    }
-    return false;
-}
+// bool checkVowel(char ch, char[] vowels){
+//     foreach (char element in vowels){
+//         if (ch == element)
+//          return true;
+//     }
+//     return false;
+// }
+
+// Console.Clear();
+// Console.Write("Введите строку: ");
+// string str = Console.ReadLine()!;
+// char[] vowels = { 'a', 'e', 'i', 'o', 'u', 'y' };
+// int count = 0;
+// for (int i = 0; i < str.Length; i++){
+//     if (checkVowel(str[i], vowels))
+//         count++;
+// }
+// Console.WriteLine(count);
+
+// ======================================
 
 Console.Clear();
-Console.Write("Введите строку: ");
-string str = Console.ReadLine()!;
-char[] vowels = { 'a', 'e', 'i', 'o', 'u', 'y' };
-int count = 0;
-for (int i = 0; i < str.Length; i++){
-    if (checkVowel(str[i], vowels))
-        count++;
-}
-Console.WriteLine(count);
+Console.WriteLine(@"Задача 1:
+Задайте двумерный массив символов (тип char [,]). 
+Создать строку из символов этого массива.
+");
+
+
