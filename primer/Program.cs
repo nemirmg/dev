@@ -1,6 +1,6 @@
 ﻿/*
-Сортировка подсчётом
-====================
+Сортировка подсчётом (теория)
+=============================
 
 [0, 2, 3, 2, 1, 5, 9, 1, 1] - исходный массив из цифр (0...9)
 
@@ -56,8 +56,8 @@ CountingSort(array);
 Console.WriteLine($"Отсортированный массив: [{string.Join(", ", array)}]");
 */
 //------------------------------
-// сортировка чисел (0 ... неизвестно)
-
+// сортировка натуральных чисел (0 ... неизвестно)
+/*
 int[] CountingSortExtended(int[] inputArray)
 {
     int max = inputArray.Max();
@@ -83,5 +83,40 @@ int[] CountingSortExtended(int[] inputArray)
 }
 
 int[] array = {0, 2, 4, 10, 20, 5, 6, 1, 2};
+int[] sortedArray = CountingSortExtended(array);
+Console.WriteLine($"Отсортированный массив: [{string.Join(", ", sortedArray)}]");
+*/
+//------------------------------
+// сортировка целых чисел (-оо ... +оо)
+
+int[] CountingSortExtended(int[] inputArray)
+{
+    int max = inputArray.Max();
+    int min = inputArray.Min();
+    // универсальное смещение для индексов вспомогательного массива
+    int offset = -min;
+    
+    int[] counters = new int [max + offset + 1];
+    int[] sortedArray = new int[inputArray.Length];
+
+    for (int i = 0; i < inputArray.Length; i++)
+    {
+        counters[inputArray[i] + offset]++;
+    }
+
+    int index = 0;
+    for (int i = 0; i < counters.Length; i++)
+    {
+        for (int j = 0; j < counters[i]; j++)
+        {
+            sortedArray[index] = i - offset;
+            index++;
+        }
+    }
+
+    return sortedArray;
+}
+
+int[] array = {-10, -5, -9, 0, 2, 5, 1, 3, 1, 0, 1};
 int[] sortedArray = CountingSortExtended(array);
 Console.WriteLine($"Отсортированный массив: [{string.Join(", ", sortedArray)}]");
