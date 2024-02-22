@@ -1,111 +1,87 @@
-﻿// int[] arrayInt = new int[5]; // [0, 0, 0, 0, 0]
-// string[] arrayString = new string[5]; // ["", "", "", "", ""]
-// char[] arrayChar = new char[5]; // ['', '', '', '', '']
+﻿/*
+Сортировка подсчётом
+====================
 
-//----------------
-/*
-Задание 1.
+[0, 2, 3, 2, 1, 5, 9, 1, 1] - исходный массив из цифр (0...9)
 
-Задайте массив символов (тип char []). Создайте строку из
-символов этого массива.
+создаём вспомогательный массив из 10 элементов
+(для хранения количества цифр исходного массива)
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-Конструктор строки вида string(char []) не использовать.
-char[] chars = new char[] { 'a', 'b', 'c', 'd' };
-string str = new string(chars) -> в данном случае не использовать
+у каждого элемента вспомогательного массива есть индекс:
+0, 1, 2, 3, 4, 5, 6, 7, 8, 9
 
-Пример
-['a', 'b', 'c', 'd'] => "abcd"
+подсчитываем количество каждой цифры из исходного массива 
+и заносим его во вспомогательный массив:
+[1, 3, 2, 1, 0, 1, 0, 0, 0, 1]
+ 0  1  2  3  4  5  6  7  8  9
+
+ отсортированный массив формируется из вспомогательного:
+ выводим последовательно индексы вспомогательного массива то количество раз, 
+ сколько эта цифра встречалась в исходном массиве
+ [0, 1, 1, 1, 2, 2, 3, 5, 9]
 */
 
-// Console.Clear();
-// Console.Write("Кол-во элементов массива: ");
-// int n = int.Parse(Console.ReadLine()!);
-// char[] chars = new char[n];
-// for (int i = 0; i < chars.Length; i++){
-//     Console.Write("Введите элемент массива: ");
-//     chars[i] = char.Parse(Console.ReadLine()!);
-// }
-// Console.WriteLine($"Начальный массив: [{string.Join(", ", chars)}]");
-// Console.WriteLine(string.Join("", chars)); // простой вариант в одну строку
-// // то же самое с помощью цикла
-// string result = "";
-// foreach (char element in chars){
-//     result += element;
-// }
-// Console.WriteLine(result);
-
-//----------------
+//------------------------------
+// сортировка цифр (0...9)
 /*
-Задание 2.
+void CountingSort(int[] inputArray)
+{
+    int n = 10;
+    int[] counters = new int[n];
+    int ourNumber;
+    
+    for (int i = 0; i < inputArray.Length; i++)
+    {
+        // counters[inputArray[i]]++;
+        ourNumber = inputArray[i];
+        counters[ourNumber] += 1;
+    }
 
-На основе символов строки (тип string) сформировать массив
-символов (тип char[]). Вывести массив на экран.
-
-Метод строки ToCharArray() не использовать.
-string str = "Hello!"
-char[] characters = str.ToCharArray(); -> в данном случае не использовать
-
-Пример
-"Hello!" => ['H', 'e', 'l', 'l', 'o', '!' ]
-*/
-
-// Console.Clear();
-// Console.Write("Введите строку: ");
-// string str = Console.ReadLine()!;
-// char[] chars = new char[str.Length];
-// for (int i = 0; i < str.Length; i++){
-//     chars[i] = str[i];
-// }
-// Console.WriteLine($"Результат: [{string.Join(", ", chars)}]");
-
-//----------------
-/*
-Задание 3.
-
-Считать строку с консоли, состоящую из латинских
-букв в нижнем регистре. Выяснить, сколько среди
-введённых букв гласных.
-
-Пример
-"hello" => 2
-"world" => 1
-*/
-
-// bool checkVowel(char ch, char[] vowels){
-//     foreach (char element in vowels){
-//         if (ch == element)
-//          return true;
-//     }
-//     return false;
-// }
-
-// Console.Clear();
-// Console.Write("Введите строку: ");
-// string str = Console.ReadLine()!;
-// char[] vowels = { 'a', 'e', 'i', 'o', 'u', 'y' };
-// int count = 0;
-// for (int i = 0; i < str.Length; i++){
-//     if (checkVowel(str[i], vowels))
-//         count++;
-// }
-// Console.WriteLine(count);
-
-// ======================================
-
-Console.Clear();
-Console.WriteLine(@"Задача 1:
-Задайте двумерный массив символов (тип char [,]). 
-Создать строку из символов этого массива.
-");
-
-char[,] charMatrix = {
-    { 'H', 'e', 'l', 'l', 'o', ' ' },
-    { 'w', 'o', 'r', 'l', 'd', '!' }
-};
-string str = "";
-for (int i = 0; i < charMatrix.GetLength(0); i++){
-    for (int j = 0; j < charMatrix.GetLength(1); j++){
-        str += charMatrix[i, j];
+    int index = 0;
+    for (int i = 0; i < counters.Length; i++)
+    {
+        for (int j = 0; j < counters[i]; j++)
+        {
+            inputArray[index] = i;
+            index++;
+        }
     }
 }
-Console.WriteLine(str);
+
+// int[] array = {0, 2, 3, 2, 1, 5, 9, 1, 1};
+// int[] array = {0, 2, 3, 2, 1, 5, 9, 1, 1, 2, 1, 3, 4, 6, 3, 1, 4, 8, 5, 2};
+int[] array = {3, 2, 1, 5, 9};
+CountingSort(array);
+Console.WriteLine($"Отсортированный массив: [{string.Join(", ", array)}]");
+*/
+//------------------------------
+// сортировка чисел (0 ... неизвестно)
+
+int[] CountingSortExtended(int[] inputArray)
+{
+    int max = inputArray.Max();
+    int[] counters = new int [max + 1];
+    int[] sortedArray = new int[inputArray.Length];
+
+    for (int i = 0; i < inputArray.Length; i++)
+    {
+        counters[inputArray[i]]++;
+    }
+
+    int index = 0;
+    for (int i = 0; i < counters.Length; i++)
+    {
+        for (int j = 0; j < counters[i]; j++)
+        {
+            sortedArray[index] = i;
+            index++;
+        }
+    }
+
+    return sortedArray;
+}
+
+int[] array = {0, 2, 4, 10, 20, 5, 6, 1, 2};
+int[] sortedArray = CountingSortExtended(array);
+Console.WriteLine($"Отсортированный массив: [{string.Join(", ", sortedArray)}]");
